@@ -1,0 +1,260 @@
+/* =========================================================================
+   OFICINA — bancada de testes
+   Identidade: oficina/laboratório pessoal. Grafite morno (não o azul frio
+   do Life Builder), latão como cor de destaque, catálogo em monoespaçada,
+   selos de borracha para status — like a workbench log, not a game HUD.
+   ========================================================================= */
+
+:root {
+    --bg: #17161a;
+    --surface: #1f1d22;
+    --surface-2: #262329;
+    --line: #35323a;
+    --line-bright: #4a4650;
+    --text: #ede9e2;
+    --text-dim: #9c968d;
+    --brass: #c98a3e;
+    --brass-bright: #e3a75b;
+    --brass-glow: rgba(201, 138, 62, 0.25);
+    --stamp-online: #6f9b6c;
+    --stamp-offline: #b8624a;
+    --kanban-blue: #5a8fc9;
+    --kanban-blue-dim: rgba(90, 143, 201, 0.12);
+    --kanban-yellow: #d8b34e;
+    --kanban-yellow-dim: rgba(216, 179, 78, 0.12);
+    --kanban-green: #6f9b6c;
+    --kanban-green-dim: rgba(111, 155, 108, 0.12);
+    --font-display: "IBM Plex Sans", sans-serif;
+    --font-body: "IBM Plex Sans", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+    --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* textura sutil de grade de pontos, como papel milimetrado de bancada */
+.of-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(237, 233, 226, 0.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+a { color: inherit; }
+
+/* ---------- HEADER / FOOTER ---------- */
+.of-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+}
+.of-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.of-header__mark { font-size: 20px; color: var(--brass-bright); }
+.of-header__name {
+    font-family: var(--font-mono); font-weight: 600; font-size: 15px;
+    letter-spacing: 4px; color: var(--text);
+}
+.of-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.of-header-actions__codigo {
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 5px 9px;
+}
+
+.of-footer {
+    position: relative; z-index: 1;
+    margin-top: auto; padding: 22px 40px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+    border-top: 1px solid var(--line);
+}
+
+.of-main { position: relative; z-index: 1; flex: 1; padding: 56px 40px 80px; max-width: 1320px; margin: 0 auto; width: 100%; }
+
+/* ---------- HERO ---------- */
+.of-hero { max-width: 640px; margin-bottom: 56px; }
+.of-hero__eyebrow {
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--brass-bright); margin: 0 0 18px;
+}
+.of-hero__title {
+    font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 1.08;
+    letter-spacing: -0.5px; margin: 0 0 20px; color: var(--text);
+}
+.of-hero__lede { font-size: 16px; line-height: 1.6; color: var(--text-dim); margin: 0; }
+
+/* ---------- KANBAN ---------- */
+.of-kanban {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+.of-kanban__col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--line-bright);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    min-height: 160px;
+}
+.of-kanban__col--blue { border-top-color: var(--kanban-blue); }
+.of-kanban__col--yellow { border-top-color: var(--kanban-yellow); }
+.of-kanban__col--green { border-top-color: var(--kanban-green); }
+.of-kanban__head {
+    display: flex; align-items: center; gap: 9px;
+    padding: 16px 18px; border-bottom: 1px solid var(--line);
+}
+.of-kanban__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-bright); flex-shrink: 0; }
+.of-kanban__col--blue .of-kanban__dot { background: var(--kanban-blue); }
+.of-kanban__col--yellow .of-kanban__dot { background: var(--kanban-yellow); }
+.of-kanban__col--green .of-kanban__dot { background: var(--kanban-green); }
+.of-kanban__title {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; margin: 0; color: var(--text);
+}
+.of-kanban__count {
+    margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+    border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px;
+}
+.of-kanban__cards { display: flex; flex-direction: column; gap: 16px; padding: 16px; }
+.of-kanban__empty { font-size: 12.5px; color: var(--text-dim); padding: 4px 2px; margin: 0; }
+
+/* ---------- CARDS ---------- */
+.of-card {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color .15s ease;
+}
+.of-card:hover { border-color: var(--line-bright); }
+
+.of-card__preview {
+    display: block;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #0d0c0f
+        linear-gradient(135deg, rgba(201, 138, 62, 0.08), transparent 60%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+}
+.of-card__preview img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+    display: block; filter: saturate(0.9);
+    transition: transform .25s ease, filter .25s ease;
+}
+.of-card:hover .of-card__preview img { transform: scale(1.03); filter: saturate(1); }
+.of-card__preview--broken img { display: none; }
+.of-card__preview--broken::after {
+    content: "sem preview";
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.of-card__body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 9px; }
+.of-card__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.of-card__codigo { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--text-dim); }
+.of-card__nome { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin: 0; }
+.of-card__tagline { font-size: 13px; color: var(--brass-bright); margin: 0; font-weight: 500; }
+.of-card__descricao { font-size: 12.5px; line-height: 1.55; color: var(--text-dim); margin: 2px 0 2px; }
+.of-card__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 4px; padding: 0; }
+.of-card__tags li {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.4px; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--line); border-radius: var(--radius); padding: 3px 7px;
+}
+.of-card__actions { display: flex; gap: 8px; margin-top: auto; padding-top: 8px; flex-wrap: wrap; }
+.of-card__actions .of-btn { font-size: 12.5px; padding: 8px 13px; }
+.of-btn--icon { display: inline-flex; align-items: center; gap: 6px; }
+
+/* selo de borracha -- elemento assinatura da Oficina */
+.of-stamp {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; padding: 4px 10px; border: 1.5px dashed currentColor;
+    border-radius: 999px; transform: rotate(-3deg); display: inline-block;
+    white-space: nowrap;
+}
+.of-stamp--sm { font-size: 9px; padding: 2px 8px; transform: rotate(-2deg); margin-left: 8px; }
+.of-stamp--online { color: var(--stamp-online); }
+.of-stamp--offline { color: var(--stamp-offline); }
+
+@media (max-width: 980px) {
+    .of-kanban { grid-template-columns: 1fr; }
+}
+
+/* ---------- BOTÕES ---------- */
+.of-btn {
+    font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
+    padding: 10px 18px; border-radius: var(--radius); text-decoration: none;
+    border: 1px solid var(--brass); color: var(--bg); background: var(--brass);
+    transition: background .15s ease, box-shadow .15s ease;
+    display: inline-flex; align-items: center; gap: 4px;
+}
+.of-btn:hover { background: var(--brass-bright); box-shadow: 0 0 16px var(--brass-glow); }
+.of-btn--ghost { background: transparent; color: var(--text-dim); border-color: var(--line); }
+.of-btn--ghost:hover { color: var(--text); border-color: var(--line-bright); box-shadow: none; background: transparent; }
+.of-btn--sm { padding: 7px 13px; font-size: 12px; }
+
+/* ---------- MONITOR (view do app embutido) ---------- */
+.of-body--bench .of-main { padding-top: 32px; }
+.of-monitor {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+.of-monitor__bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; background: var(--surface-2); border-bottom: 1px solid var(--line);
+}
+.of-monitor__dot {
+    width: 9px; height: 9px; border-radius: 50%; background: var(--line-bright);
+}
+.of-monitor__title {
+    margin-left: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);
+    display: flex; align-items: center;
+}
+.of-monitor__screen { background: #0d0c0f; height: 78vh; min-height: 480px; }
+.of-monitor__iframe { width: 100%; height: 100%; border: 0; display: block; }
+.of-monitor__note {
+    font-size: 12px; color: var(--text-dim); max-width: 640px; margin: 18px auto 0; line-height: 1.6;
+}
+.of-monitor__note code {
+    font-family: var(--font-mono); background: var(--surface-2); padding: 1px 6px; border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+    .of-header, .of-main, .of-footer { padding-left: 20px; padding-right: 20px; }
+    .of-hero__title { font-size: 32px; }
+}

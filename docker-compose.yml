@@ -1,0 +1,10 @@
+services:
+  oficina:
+    build: .
+    image: oficina:latest
+    container_name: oficina
+    restart: unless-stopped
+    ports:
+      - "${PORT:-5050}:5050"
+    environment:
+      LIFE_BUILDER_URL: ${LIFE_BUILDER_URL:-http://localhost:5000}

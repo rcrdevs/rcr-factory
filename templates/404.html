@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Não encontrado — Oficina{% endblock %}
+{% block content %}
+<section class="of-hero">
+    <p class="of-hero__eyebrow">Erro 404</p>
+    <h1 class="of-hero__title">Essa bancada<br>não existe.</h1>
+    <p class="of-hero__lede">Não há nenhum projeto com esse identificador. Volte pra oficina e escolha um da lista.</p>
+    <a href="{{ url_for('index') }}" class="of-btn of-btn--primary">← Voltar à oficina</a>
+</section>
+{% endblock %}

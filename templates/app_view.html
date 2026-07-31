@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ project.nome }} — Oficina{% endblock %}
+{% block body_class %}of-body--bench{% endblock %}
+{% block header_extra %}
+<div class="of-header-actions">
+    <span class="of-header-actions__codigo">{{ project.codigo }}</span>
+    <a href="{{ project.repo_url }}" target="_blank" rel="noopener" class="of-btn of-btn--ghost of-btn--sm">Repo ↗</a>
+    <a href="{{ project.url }}" target="_blank" rel="noopener" class="of-btn of-btn--ghost of-btn--sm">Abrir em nova aba ↗</a>
+    <a href="{{ url_for('index') }}" class="of-btn of-btn--ghost of-btn--sm">← Voltar à oficina</a>
+</div>
+{% endblock %}
+{% block content %}
+<section class="of-monitor">
+    <div class="of-monitor__bar">
+        <span class="of-monitor__dot"></span>
+        <span class="of-monitor__dot"></span>
+        <span class="of-monitor__dot"></span>
+        <span class="of-monitor__title">{{ project.nome }} <span class="of-stamp of-stamp--{{ project.status_slug }} of-stamp--sm">{{ project.status }}</span></span>
+    </div>
+    <div class="of-monitor__screen">
+        <iframe
+            src="{{ project.url }}"
+            title="{{ project.nome }}"
+            class="of-monitor__iframe"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+<p class="of-monitor__note">
+    Se a tela acima ficar em branco, o app pode estar bloqueando ser exibido dentro de outra página
+    (comum quando ele mesmo adiciona cabeçalhos de segurança próprios) — nesse caso, use "Abrir em
+    nova aba" no topo. Verifique também se {{ project.nome }} está rodando em <code>{{ project.url }}</code>.
+</p>
+{% endblock %}
