@@ -112,14 +112,6 @@ def resolve_url(project):
     return os.environ.get(project["url_env"], project["url_default"])
 
 
-def preview_url(project, width=640, height=420):
-    """URL de um screenshot ao vivo da página, gerado por um serviço externo
-    (thum.io) — não precisa gerar nem hospedar imagem nenhuma aqui, o
-    navegador de quem acessa a Oficina que busca a captura."""
-    target = resolve_url(project)
-    return f"https://image.thum.io/get/width/{width}/crop/{height}/noanimate/{target}"
-
-
 def get_project(project_id):
     return next((p for p in PROJECTS if p["id"] == project_id), None)
 

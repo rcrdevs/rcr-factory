@@ -8,7 +8,7 @@ import unicodedata
 
 from flask import Flask, abort, render_template
 
-from projects import CATEGORIAS, PROJECTS, get_project, preview_url, resolve_url
+from projects import CATEGORIAS, PROJECTS, get_categoria, get_project, resolve_url
 
 app = Flask(__name__)
 
@@ -18,12 +18,19 @@ def _slug(text):
     return normalized.lower().replace(" ", "-")
 
 
+def _monograma(nome):
+    letras = [w[0] for w in nome.split() if w][:2]
+    return "".join(letras).upper()
+
+
 def _with_extras(project):
+    categoria = get_categoria(project["categoria"])
     return {
         **project,
         "url": resolve_url(project),
-        "preview": preview_url(project),
         "status_slug": _slug(project["status"]),
+        "monograma": _monograma(project["nome"]),
+        "categoria_cor": categoria["cor"] if categoria else "blue",
     }
 
 

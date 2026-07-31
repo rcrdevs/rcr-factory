@@ -19,9 +19,9 @@
         <div class="of-kanban__cards">
             {% for p in col.projects %}
             <article class="of-card">
-                <a class="of-card__preview" href="{{ p.url }}" target="_blank" rel="noopener" tabindex="-1">
-                    <img src="{{ p.preview }}" alt="Captura de tela de {{ p.nome }}" loading="lazy"
-                         onerror="this.parentElement.classList.add('of-card__preview--broken')">
+                <a class="of-card__preview of-card__preview--{{ p.categoria_cor }}" href="{{ p.url }}" target="_blank" rel="noopener" tabindex="-1">
+                    <span class="of-card__monograma">{{ p.monograma }}</span>
+                    <span class="of-card__preview-codigo">{{ p.codigo }}</span>
                 </a>
                 <div class="of-card__body">
                     <div class="of-card__top">

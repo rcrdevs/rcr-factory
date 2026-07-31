@@ -160,27 +160,40 @@ a { color: inherit; }
 .of-card:hover { border-color: var(--line-bright); }
 
 .of-card__preview {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     aspect-ratio: 16 / 9;
-    background: #0d0c0f
-        linear-gradient(135deg, rgba(201, 138, 62, 0.08), transparent 60%);
     overflow: hidden;
     border-bottom: 1px solid var(--line);
+    background: linear-gradient(135deg, var(--surface-2), var(--bg));
+    text-decoration: none;
 }
-.of-card__preview img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top;
-    display: block; filter: saturate(0.9);
-    transition: transform .25s ease, filter .25s ease;
+.of-card__preview::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(237, 233, 226, 0.09) 1px, transparent 1px);
+    background-size: 15px 15px;
 }
-.of-card:hover .of-card__preview img { transform: scale(1.03); filter: saturate(1); }
-.of-card__preview--broken img { display: none; }
-.of-card__preview--broken::after {
-    content: "sem preview";
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--text-dim);
+.of-card__monograma {
+    position: relative; z-index: 1;
+    font-family: var(--font-mono); font-weight: 700; font-size: 42px; letter-spacing: 3px;
+    color: var(--text); opacity: 0.85;
+    transition: transform .2s ease, opacity .2s ease;
 }
+.of-card:hover .of-card__monograma { transform: scale(1.06); opacity: 1; }
+.of-card__preview-codigo {
+    position: absolute; z-index: 1; right: 10px; bottom: 8px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px;
+    color: var(--text-dim); opacity: 0.8;
+}
+.of-card__preview--blue { background: linear-gradient(135deg, var(--kanban-blue-dim), var(--surface-2)); }
+.of-card__preview--blue .of-card__monograma { color: var(--kanban-blue); }
+.of-card__preview--yellow { background: linear-gradient(135deg, var(--kanban-yellow-dim), var(--surface-2)); }
+.of-card__preview--yellow .of-card__monograma { color: var(--kanban-yellow); }
+.of-card__preview--green { background: linear-gradient(135deg, var(--kanban-green-dim), var(--surface-2)); }
+.of-card__preview--green .of-card__monograma { color: var(--kanban-green); }
 
 .of-card__body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 9px; }
 .of-card__top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
