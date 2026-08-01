@@ -18,10 +18,19 @@
         <span class="of-monitor__title">{{ project.nome }} <span class="of-stamp of-stamp--{{ project.status_slug }} of-stamp--sm">{{ project.status }}</span></span>
     </div>
     <div class="of-monitor__screen">
+        <div class="of-boot" data-boot>
+            <p class="of-boot__brand">coding solutions</p>
+            <img class="of-boot__gif" data-boot-gif
+                 src="{{ url_for('static', filename='img/boot-teaser.gif') }}"
+                 data-full-src="{{ url_for('static', filename='img/boot-full.gif') }}"
+                 alt="Carregando {{ project.nome }}">
+            <p class="of-boot__status"><span data-boot-label>carregando</span><span data-boot-pct>0%</span></p>
+        </div>
         <iframe
             src="{{ project.url }}"
             title="{{ project.nome }}"
             class="of-monitor__iframe"
+            data-boot-iframe
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -32,4 +41,5 @@
     (comum quando ele mesmo adiciona cabeçalhos de segurança próprios) — nesse caso, use "Abrir em
     nova aba" no topo. Verifique também se {{ project.nome }} está rodando em <code>{{ project.url }}</code>.
 </p>
+<script src="{{ url_for('static', filename='js/boot.js') }}"></script>
 {% endblock %}
