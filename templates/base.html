@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Oficina{% endblock %}</title>
+    <title>{% block title %}RCR-FACTORY{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -13,7 +13,7 @@
     <header class="of-header">
         <a href="{{ url_for('index') }}" class="of-header__brand">
             <span class="of-header__mark">⚒</span>
-            <span class="of-header__name">OFICINA</span>
+            <span class="of-header__name">RCR-FACTORY</span>
         </a>
         {% block header_extra %}{% endblock %}
     </header>
@@ -21,7 +21,7 @@
         {% block content %}{% endblock %}
     </main>
     <footer class="of-footer">
-        <span>Oficina · bancada de testes dos projetos em desenvolvimento</span>
+        <span>RCR-FACTORY · bancada de testes dos projetos em desenvolvimento</span>
     </footer>
 </body>
 </html>
