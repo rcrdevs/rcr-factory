@@ -4,8 +4,7 @@
 <section class="of-hero">
     <p class="of-hero__eyebrow">Bancada de testes · {{ projects|length }} projeto{{ 's' if projects|length != 1 else '' }} catalogado{{ 's' if projects|length != 1 else '' }}</p>
     <h1 class="of-hero__title">Cada projeto,<br>uma bancada aberta.</h1>
-    <p class="of-hero__lede">Aqui ficam os apps publicados — cada um na sua própria estação, organizados
-        num quadro por estágio, prontos pra ser experimentados sem precisar caçar a porta certa.</p>
+    <p class="of-hero__lede">RCR Factory é um laboratório de software onde desenvolvo, publico e mantenho aplicações web, automações e ferramentas interativas que podem ser utilizadas diretamente no navegador.</p>
 </section>
 
 <section class="of-kanban" aria-label="Quadro de projetos por estágio">
@@ -62,5 +61,51 @@
         </div>
     </div>
     {% endfor %}
+</section>
+
+<section class="of-stats" aria-label="Números da oficina">
+    <div class="of-stats__grid">
+        <div class="of-stat">
+            <span class="of-stat__value">{{ stats.total_projects }}</span>
+            <span class="of-stat__label">Projeto{{ 's' if stats.total_projects != 1 else '' }} catalogado{{ 's' if stats.total_projects != 1 else '' }}</span>
+        </div>
+        <div class="of-stat">
+            <span class="of-stat__value">{{ stats.active_deploys }}</span>
+            <span class="of-stat__label">Deploy{{ 's' if stats.active_deploys != 1 else '' }} ativo{{ 's' if stats.active_deploys != 1 else '' }}</span>
+        </div>
+        {% if stats.total_commits %}
+        <div class="of-stat">
+            <span class="of-stat__value">{{ stats.total_commits }}</span>
+            <span class="of-stat__label">Commits no total</span>
+        </div>
+        {% endif %}
+    </div>
+    {% if stats.languages %}
+    <div class="of-stats__langs">
+        <p class="of-stats__langs-label">Linguagens</p>
+        <div class="of-langbar">
+            {% for lang in stats.languages %}
+            <span class="of-langbar__seg of-langbar__seg--{{ loop.index0 % 6 }}" style="width: {{ lang.pct }}%" title="{{ lang.nome }} — {{ lang.pct }}%"></span>
+            {% endfor %}
+        </div>
+        <ul class="of-langlist">
+            {% for lang in stats.languages[:6] %}
+            <li><span class="of-langlist__dot of-langlist__dot--{{ loop.index0 % 6 }}"></span>{{ lang.nome }} <span class="of-langlist__pct">{{ lang.pct }}%</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</section>
+
+<section class="of-about" aria-label="Sobre mim">
+    <div class="of-about__card">
+        <p class="of-about__eyebrow">Sobre mim</p>
+        <h2 class="of-about__nome">{{ about.nome }}</h2>
+        <p class="of-about__resumo">{{ about.resumo }}</p>
+        <div class="of-about__links">
+            <a href="{{ about.linkedin_url }}" target="_blank" rel="noopener" class="of-btn of-btn--ghost">LinkedIn ↗</a>
+            <a href="{{ about.github_url }}" target="_blank" rel="noopener" class="of-btn of-btn--ghost">GitHub ↗</a>
+        </div>
+    </div>
 </section>
 {% endblock %}

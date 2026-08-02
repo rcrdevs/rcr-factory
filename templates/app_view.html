@@ -16,6 +16,7 @@
         <span class="of-monitor__dot"></span>
         <span class="of-monitor__dot"></span>
         <span class="of-monitor__title">{{ project.nome }} <span class="of-stamp of-stamp--{{ project.status_slug }} of-stamp--sm">{{ project.status }}</span></span>
+        <a href="{{ url_for('index') }}" class="of-monitor__back">← Voltar</a>
     </div>
     <div class="of-monitor__screen">
         <div class="of-boot" data-boot>

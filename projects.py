@@ -24,9 +24,9 @@ import os
 # Colunas do quadro Kanban, na ordem em que aparecem na tela.
 # "cor" é só a chave usada no CSS (.of-kanban__col--<cor>), não muda o slug.
 CATEGORIAS = [
-    {"slug": "legacy", "nome": "Legacy", "cor": "blue"},
-    {"slug": "on-holding", "nome": "On Holding", "cor": "yellow"},
     {"slug": "under-dev", "nome": "Under Dev", "cor": "green"},
+    {"slug": "on-holding", "nome": "On Holding", "cor": "yellow"},
+    {"slug": "legacy", "nome": "Legacy", "cor": "blue"},
 ]
 
 PROJECTS = [

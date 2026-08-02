@@ -8,6 +8,8 @@ import unicodedata
 
 from flask import Flask, abort, render_template
 
+import github_stats
+from about import ABOUT
 from projects import CATEGORIAS, PROJECTS, get_categoria, get_project, resolve_url
 
 app = Flask(__name__)
@@ -41,7 +43,13 @@ def index():
         {**cat, "projects": [p for p in projects if p["categoria"] == cat["slug"]]}
         for cat in CATEGORIAS
     ]
-    return render_template("index.html", projects=projects, columns=columns)
+
+    repos = [p["repo_url"].replace("https://github.com/", "") for p in PROJECTS]
+    stats = github_stats.get_stats(repos)
+    stats["total_projects"] = len(PROJECTS)
+    stats["active_deploys"] = sum(1 for p in PROJECTS if p["status"] == "online")
+
+    return render_template("index.html", projects=projects, columns=columns, stats=stats, about=ABOUT)
 
 
 @app.route("/app/<project_id>")
