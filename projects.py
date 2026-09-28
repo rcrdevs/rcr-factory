@@ -34,7 +34,7 @@ PROJECTS = [
         "id": "life-builder",
         "codigo": "LB-01",
         "nome": "Life Builder Assistant",
-        "tagline": "Um RPG da vida real: builds, missões diárias por área e progresso por ciclo.",
+        "tagline": "Builds, missões diárias por área e progresso por ciclo para evoluir na vida real.",
         "descricao": (
             "Sistema de builds com missões geradas por ciclo de 14 dias, quiz "
             "personalizado por IA para temas de estudo, dieta com substituição "
